@@ -1,9 +1,15 @@
 const CANVAS_SIZE = 800;
-const BACKGROUND_COLOR = 238;
 const NUMBER_OF_CELLS = 10;
 const CELL_SIZE = CANVAS_SIZE / NUMBER_OF_CELLS;
+const BACKGROUND_TEXTURES = [];
 
-function preload() {}
+function preload() {
+  // use a loop to load the similarly names images into an array
+  for (let i = 1; i <= 4; i++) {
+    // backgroundTextures.push(loadImage("images/texture-trans"+i+".png")); // old school concatenation
+    BACKGROUND_TEXTURES.push(loadImage(`images/texture-trans${i}.png`)); // ES6 template literal with string interpolation
+  }
+}
 
 function setup() {
   //create a canvas of 800 x 800 pixels
@@ -20,10 +26,13 @@ function setup() {
       const green = random(255);
       const blue = random(255);
 
-      // set color as the fill color
-      fill(red, green, blue);
+      //get a random texture
+      const img = random(BACKGROUND_TEXTURES);
+
+      //set tint
+      tint(red, green, blue);
       // draw square in correct place with correct size
-      rect(row * CELL_SIZE, column * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      image(img, row * CELL_SIZE, column * CELL_SIZE, CELL_SIZE, CELL_SIZE);
     }
   }
 }
