@@ -1,7 +1,10 @@
+//set size to 800
+const CANVAS_SIZE = 800;
+
 function setup() {
-    createCanvas(400, 400);
-}
-  
-function draw() {
-    background(220);
+  // create a canvas of size CANVAS_SIZE by CANVAS_SIZE
+  createCanvas(CANVAS_SIZE, CANVAS_SIZE);
+
+  // set up background to greyscale 220
+  background(220);
 }
