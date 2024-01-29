@@ -2,6 +2,10 @@ const CANVAS_SIZE = 800;
 const NUMBER_OF_CELLS = 10;
 const CELL_SIZE = CANVAS_SIZE / NUMBER_OF_CELLS;
 const BACKGROUND_TEXTURES = [];
+const X_VARIATION = 2;
+const Y_VARIATION = 3;
+const WIDTH_VARIATION = 5;
+const HEIGHT_VARIATION = 2;
 
 function preload() {
   // use a loop to load the similarly names images into an array
@@ -28,11 +32,26 @@ function setup() {
 
       //get a random texture
       const img = random(BACKGROUND_TEXTURES);
-
+      
       //set tint
       tint(red, green, blue);
+
+      //generate position offset
+      const xOffset = random(-X_VARIATION, X_VARIATION);
+      const yOffset = random(-Y_VARIATION, Y_VARIATION);
+
+      //generate width and height offsets
+      const widthOffset = random(-WIDTH_VARIATION, WIDTH_VARIATION);
+      const heightOffset = random(-HEIGHT_VARIATION, HEIGHT_VARIATION);
+
+      //create positional and size variables
+      const xPosition = row * CELL_SIZE + xOffset;
+      const yPosition = column * CELL_SIZE + yOffset;
+      const width = CELL_SIZE + widthOffset;
+      const height = CELL_SIZE + heightOffset;
+
       // draw square in correct place with correct size
-      image(img, row * CELL_SIZE, column * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+      image(img, xPosition, yPosition, width, height);
     }
   }
 }
